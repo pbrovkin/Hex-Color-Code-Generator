@@ -1,8 +1,18 @@
 
 let div = document.getElementById('main-container');
 
+document.getElementById('generate').addEventListener('click', generateColors);
+
+document.getElementById('start').addEventListener('click', start);
+
+document.getElementById('stop').addEventListener('click', stop);
+
+
 
 function generateColors() {
+
+    //empty the main container, if colors are already generated
+    emptyContainer(div);
 
     let inputVal = document.getElementById('inputValue').value;
 
@@ -36,6 +46,23 @@ function generateColors() {
     }
 }
 
+function emptyContainer(parent) {
+    if (parent.hasChildNodes()) {
+        parent.textContent = '';
+    }
+}
+
+function valueIsCorrect(val) {
+    if (Number.isInteger(Number(val)) && val > 0) {
+        return true;
+    }
+    return alert('Enter integer value greater than 0');
+}
+
+function randomColorCode() {
+    return '#' + Math.random().toString(16).slice(-6).toUpperCase();
+}
+
 let colorBlocks = div.getElementsByClassName('block');
 
 let timeInter;
@@ -54,16 +81,9 @@ function flashing() {
     }
 }
 
-function randomColorCode() {
-    return '#' + Math.random().toString(16).slice(-6).toUpperCase();
-}
 
-function valueIsCorrect(val) {
-    if (Number.isInteger(Number(val)) && val > 0) {
-        return true;
-    }
-    return alert('Enter integer value greater than 0');
-}
+
+
 
 
 
